@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <introduct></introduct>
-    <copyright></copyright>
+    <mainPage></mainPage>
   </div>
 </template>
 
 <script>
-import Copyright from './components/Copyright'
 import Introduct from './components/Introduct'
+import MainPage from './components/Main'
 
 export default {
   name: 'app',
   components: {
     Introduct,
-    Copyright
+    MainPage
   }
 }
 </script>

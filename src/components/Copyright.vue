@@ -1,6 +1,6 @@
 <template>
   <div class="copyright">
-    <p>{{message}}</p>
+    <p v-html="message"></p>
   </div>
 </template>
 
@@ -19,14 +19,14 @@ export default {
   div {
     background: #ffffff;
     color: #ddd;
-    padding: 0px 0 0px 0;
+    padding: 0px;
     vertical-align: middle;
   }
 
   p {
     color: #afafaf;
     font-size: 11px;
-    margin-top: 10px;
+    margin: 10px 0;
     text-align: left;
   }
 
