@@ -9,119 +9,157 @@
       </div>
     </div>
     <div class="portfolio">
-      <ul>
-        <li v-for="photo in display"><img v-bind:src="portfolio + photo.thumb" /></li>
-      </ul>
+      <waterfall line="v" :line-gap="212" :watch="active" :fixed-height="true">
+        <!-- each component is wrapped by a waterfall slot -->
+        <waterfall-slot v-for="(photo, index) in display" :width="200" :height="photo.height * 200 / photo.width + 12" :order="index">
+          <img class="thumb" v-bind:src="portfolio + photo.thumb" />
+        </waterfall-slot>
+      </waterfall>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'exhibit',
-    data () {
-      return {
-        active: 'all',
-        tags: [{
-          name: 'all',
-          display: '全部'
-        }, {
-          name: 'portrait',
-          display: '人像'
-        }, {
-          name: 'stage',
-          display: '剧照'
-        }, {
-          name: 'documentary',
-          display: '记录'
-        }],
-        portfolio: '../../static/portfolio/',
-        photographs: [{
-          category: ['portrait'],
-          thumb: 's7.jpg',
-          src: '7.jpg'
-        }, {
-          category: ['portrait'],
-          thumb: 's11.jpg',
-          src: '11.jpg'
-        }, {
-          category: ['portrait'],
-          thumb: 's13.jpg',
-          src: '13.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's1.jpg',
-          src: '1.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's2.jpg',
-          src: '2.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's12.jpg',
-          src: '12.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's17.jpg',
-          src: '17.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's19.jpg',
-          src: '19.jpg'
-        }, {
-          category: ['stage'],
-          thumb: 's21.jpg',
-          src: '21.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's3.jpg',
-          src: '3.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's4.jpg',
-          src: '4.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's5.jpg',
-          src: '5.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's8.jpg',
-          src: '8.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's10.jpg',
-          src: '10.jpg'
-        }, {
-          category: ['documentary'],
-          thumb: 's20.jpg',
-          src: '20.jpg'
-        }]
-      }
-    },
-    computed: {
-      display: function () {
-        if (this.active === 'all') {
-          return this.photographs
-        } else {
-          var photos = []
-          for (var i = 0; i < this.photographs.length; i++) {
-            var photo = this.photographs[i]
-            if (photo.category.indexOf(this.active) >= 0) {
-              photos.push(photo)
-            }
+var Waterfall = require('vue-waterfall')
+
+export default {
+  name: 'exhibit',
+  components: {
+    'waterfall': Waterfall.waterfall,
+    'waterfall-slot': Waterfall.waterfallSlot
+  },
+  data () {
+    return {
+      active: 'all',
+      tags: [{
+        name: 'all',
+        display: '全部'
+      }, {
+        name: 'portrait',
+        display: '人像'
+      }, {
+        name: 'stage',
+        display: '剧照'
+      }, {
+        name: 'documentary',
+        display: '记录'
+      }],
+      portfolio: '../../static/portfolio/',
+      photographs: [{
+        category: [ 'stage' ],
+        thumb: 's1.jpg',
+        src: '1.jpg',
+        width: 900,
+        height: 600
+      }, {
+        category: [ 'portrait' ],
+        thumb: 's7.jpg',
+        src: '7.jpg',
+        width: 900,
+        height: 600
+      }, {
+        category: [ 'portrait' ],
+        thumb: 's11.jpg',
+        src: '11.jpg',
+        width: 600,
+        height: 900
+      }, {
+        category: [ 'portrait' ],
+        thumb: 's13.jpg',
+        src: '13.jpg',
+        width: 1067,
+        height: 600
+      }, {
+        category: [ 'stage' ],
+        thumb: 's2.jpg',
+        src: '2.jpg',
+        width: 900,
+        height: 600
+      }, {
+        category: [ 'stage' ],
+        thumb: 's17.jpg',
+        src: '17.jpg',
+        width: 1067,
+        height: 600
+      }, {
+        category: [ 'stage' ],
+        thumb: 's21.jpg',
+        src: '21.jpg',
+        width: 600,
+        height: 900
+      }, {
+        category: [ 'stage' ],
+        thumb: 's12.jpg',
+        src: '12.jpg',
+        width: 1067,
+        height: 600
+      }, {
+        category: [ 'stage' ],
+        thumb: 's19.jpg',
+        src: '19.jpg',
+        width: 1067,
+        height: 600
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's3.jpg',
+        src: '3.jpg',
+        width: 900,
+        height: 600
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's4.jpg',
+        src: '4.jpg',
+        width: 1280,
+        height: 600
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's5.jpg',
+        src: '5.jpg',
+        width: 600,
+        height: 900
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's8.jpg',
+        src: '8.jpg',
+        width: 900,
+        height: 600
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's10.jpg',
+        src: '10.jpg',
+        width: 1067,
+        height: 600
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's20.jpg',
+        src: '20.jpg',
+        width: 600,
+        height: 900
+      }]
+    }
+  },
+  computed: {
+    display: function () {
+      if (this.active === 'all') {
+        return this.photographs
+      } else {
+        var photos = []
+        for (var i = 0; i < this.photographs.length; i++) {
+          var photo = this.photographs[i]
+          if (photo.category.indexOf(this.active) >= 0) {
+            photos.push(photo)
           }
-          return photos
         }
-      }
-    },
-    methods: {
-      show: function (tagid) {
-        this.active = tagid
-        console.log('hjgkj' + tagid)
+        return photos
       }
     }
+  },
+  methods: {
+    show: function (tagid) {
+      this.active = tagid
+    }
   }
+}
 </script>
 
 <style scoped>
@@ -203,34 +241,20 @@
     text-align: center;
   }
   
-  .portfolio ul {
-    list-style-type: none;
-    position: relative;
-    /** Needed to ensure items are laid out relative to this container **/
-    display: inline-block;
-    padding: 0;
+  .portfolio waterfall {
+    text-align: center
   }
   
-  .portfolio ul li {
-    text-align: center;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  .thumb {
+    position: relative;
     width: 200px;
+    height: auto;
     margin: 6px;
-    background-color: #ffffff;
-    float: left;
-    display: block;
     cursor: pointer;
-    border-radius: 6px;
-    -moz-border-radius: 6px;
-    -webkit-border-radius: 6px;
     box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
     -moz-box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
     -webkit-box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
-  }
-  
-  .portfolio ul li img {
-    width: 100%;
-    height: auto;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 </style>
