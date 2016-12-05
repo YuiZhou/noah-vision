@@ -125,16 +125,16 @@ export default {
         height: 600
       }, {
         category: [ 'documentary' ],
-        thumb: 's10.jpg',
-        src: '10.jpg',
-        width: 1067,
-        height: 600
-      }, {
-        category: [ 'documentary' ],
         thumb: 's20.jpg',
         src: '20.jpg',
         width: 600,
         height: 900
+      }, {
+        category: [ 'documentary' ],
+        thumb: 's10.jpg',
+        src: '10.jpg',
+        width: 1067,
+        height: 600
       }]
     }
   },
