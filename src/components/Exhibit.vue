@@ -174,7 +174,8 @@ export default {
     box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
     -moz-box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
     -webkit-box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
   }
 </style>

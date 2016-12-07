@@ -28,8 +28,10 @@
 		border-left: 2px solid #fff;
 		border-bottom: 2px solid #fff;
 		-webkit-animation: bounce 1.5s infinite;
+		-moz-animation: bounce 1.5s infinite;
 		animation: bounce 1.5s infinite;
 		-webkit-transform: rotate(135deg);
+		-moz-transform: rotate(135deg);
 		transform: rotate(135deg);
 		box-sizing: border-box;
 	}
@@ -44,6 +46,20 @@
 		}
 		100% {
 			-webkit-transform: rotate(135deg) translate(-10px, 10px);
+			opacity: 0;
+		}
+	}
+
+	@-moz-keyframes bounce {
+		0% {
+			-moz-transform: rotate(135deg) translate(0, 0);
+			opacity: 0;
+		}
+		50% {
+			opacity: 1;
+		}
+		100% {
+			-moz-transform: rotate(135deg) translate(-10px, 10px);
 			opacity: 0;
 		}
 	}
