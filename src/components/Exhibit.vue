@@ -4,7 +4,7 @@
       <img src="../assets/noah.png" class="logopic">
       <div>
         <ul id="filters">
-          <li v-for="tag in tags" v-on:click="show(tag.name)">{{tag.display}}</li>
+          <li v-for="tag in tags" :class="{active: tag.name === active}" v-on:click="show(tag.name)">{{tag.display}}</li>
         </ul>
       </div>
     </div>
