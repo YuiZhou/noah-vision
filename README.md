@@ -19,7 +19,8 @@ It's a tiny display web page which is build on [vuejs](http://vuejs.org) webpack
 - [X] Owner can easily config tags
 - [X] Contains a contact part, which will show the mail and phone
 - [X] Contains a copyright part
-- [ ] Self adaption in different size
+- [X] Self adaption in different size
+- [ ] Don't use original font type
 
 ## Build
 ### Environment requirment

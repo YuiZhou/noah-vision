@@ -4,19 +4,19 @@
       <img src="../assets/noah.png" class="logopic">
       <div>
         <ul id="filters">
-          <li v-for="tag in tags" :class="{active: tag.name === active}" v-on:click="show(tag.name)">{{tag.display}}</li>
+          <li v-for="tag in tags" :class="{active: tag.name === active}" @click="show(tag.name)">{{tag.display}}</li>
         </ul>
       </div>
     </div>
     <div class="portfolio">
-      <waterfall line="v" :line-gap="212" :watch="active" :fixed-height="true">
+      <waterfall line="v" :line-gap="fixedWidth + 12" :max-line-gap="492" :watch="display" :fixed-height="false" align="center">
         <!-- each component is wrapped by a waterfall slot -->
-        <waterfall-slot v-for="(photo, index) in display" :width="200" :height="photo.h * 200 / photo.w + 12" :order="index">
+        <waterfall-slot class="waterfall-slot" v-for="(photo, index) in display" :width="fixedWidth + 12" :height="photo.h * fixedWidth / photo.w + 12"
+          :order="index">
           <img class="preview-img thumb" :src="photo.thumb" @click="$refs.previewer.show(index)">
-          <!--<img class="thumb" v-bind:src="portfolio + photo.thumb" />-->
         </waterfall-slot>
       </waterfall>
-      <previewer :list="display" ref="previewer" :options="options"></previewer>        
+      <previewer :list="display" ref="previewer" :options="options"></previewer>
     </div>
   </div>
 </template>
@@ -40,6 +40,7 @@ export default {
       tags: PortfolioConfig,
       portfolio: ImageFactory.workspace,
       photographs: ImageFactory.images,
+      fixedWidth: 200,
       options: {
         getThumbBoundsFn (index) {
           // find thumbnail element
@@ -161,15 +162,15 @@ export default {
     text-align: center;
   }
   
-  .portfolio waterfall {
-    text-align: center
+  .portfolio .waterfall-slot {
+    padding: 6px;
   }
   
   .thumb {
     position: relative;
-    width: 200px;
+    width: 100%;
     height: auto;
-    margin: 6px;
+    margin: 0;
     cursor: pointer;
     box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);
     -moz-box-shadow: 0 0 3px 1px rgba(153, 153, 153, 0.6);

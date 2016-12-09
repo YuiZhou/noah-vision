@@ -47,7 +47,7 @@
   }
   /*  #Mobile (Portrait) - Note:Design for a width of 320px */
   
-  @media only screen and (max-width:767px) {
+  @media only screen and (max-width:480px) {
     .container {
       width: 100%;
     }
