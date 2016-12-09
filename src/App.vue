@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <introduct></introduct>
-    <mainPage></mainPage>
+    <introduct v-scroll-to="'#main'"></introduct>
+    <mainPage id="main"></mainPage>
   </div>
 </template>
 
