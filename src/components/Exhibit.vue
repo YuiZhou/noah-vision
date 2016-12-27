@@ -1,6 +1,6 @@
 <template>
   <div id="exhibit">
-    <div class="navbar">
+    <div :class="{navbar:true, affix:affixed}">
       <img src="../assets/noah.png" class="logopic">
       <div>
         <ul id="filters">
@@ -26,6 +26,7 @@ import Waterfall from 'vue-waterfall'
 import Previewer from './Previewer'
 import ImageFactory from '../assets/image-factory.js'
 import PortfolioConfig from '../assets/portfolio-config.js'
+import EventListener from './EventListener'
 
 export default {
   name: 'exhibit',
@@ -34,8 +35,15 @@ export default {
     'waterfall-slot': Waterfall.waterfallSlot,
     previewer: Previewer
   },
+  props: {
+    offset: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
+      affixed: false,
       active: 'all',
       tags: PortfolioConfig,
       portfolio: ImageFactory.workspace,
@@ -78,6 +86,54 @@ export default {
   methods: {
     show: function (tagid) {
       this.active = tagid
+    },
+    scrolling () {
+      const scrollTop = this.getScroll(window, true)
+      console.log(scrollTop)
+      const offset = this.getOffset(this.$el)
+      if (!this.affixed && scrollTop > offset.top - this.offset) {
+        this.affixed = true
+      }
+      if (this.affixed && scrollTop < this.initialTop - this.offset) {
+        this.affixed = false
+      }
+    },
+    getScroll (w, top) {
+      let ret = w[`page${top ? 'Y' : 'X'}Offset`]
+      const method = `scroll${top ? 'Top' : 'Left'}`
+      if (typeof ret !== 'number') {
+        const d = w.document
+        ret = d.documentElement[method]
+        if (typeof ret !== 'number') {
+          ret = d.body[method]
+        }
+      }
+      return ret
+    },
+    getOffset (element) {
+      let elm = element
+      let top = elm.offsetTop
+      let left = elm.offsetLeft
+      while (elm.offsetParent !== null) {
+        elm = elm.offsetParent
+        top += elm.offsetTop
+        left += elm.offsetLeft
+      }
+      return {
+        top,
+        left
+      }
+    }
+  },
+  mounted: function () {
+    // get the intial top number
+    this.initialTop = this.getOffset(this.$el).top
+    console.log('biubiubiu')
+    this.scrollEvent = EventListener.listen(window, 'scroll', this.scrolling)
+  },
+  beforeDestory: function () {
+    if (this.scrollEvent) {
+      this.scrollEvent.remove()
     }
   }
 }
@@ -103,7 +159,7 @@ export default {
   }
   
   .navbar {
-    /*z-index: 9999;*/
+    z-index: 999;
     width: 100%;
     text-align: center;
     background-color: #FFF;
