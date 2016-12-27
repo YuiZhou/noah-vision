@@ -1,7 +1,7 @@
 <template>
   <div id="exhibit">
     <div :class="{navbar:true, affix:affixed}">
-      <img src="../assets/noah.png" class="logopic">
+      <img src="../assets/noah.png" class="logopic" v-show="!affixed" />
       <div>
         <ul id="filters">
           <li v-for="tag in tags" :class="{active: tag.name === active}" @click="show(tag.name)">{{tag.display}}</li>
@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="portfolio">
-      <waterfall line="v" :line-gap="fixedWidth + 12" :max-line-gap="492" :watch="display" :fixed-height="false" align="center">
+      <waterfall line="v" :line-gap="fixedWidth + 12" :min-line-gap="172" :max-line-gap="320" :watch="display" :fixed-height="false" align="center">
         <!-- each component is wrapped by a waterfall slot -->
         <waterfall-slot class="waterfall-slot" v-for="(photo, index) in display" :width="fixedWidth + 12" :height="photo.h * fixedWidth / photo.w + 12"
           :order="index">
@@ -89,7 +89,6 @@ export default {
     },
     scrolling () {
       const scrollTop = this.getScroll(window, true)
-      console.log(scrollTop)
       const offset = this.getOffset(this.$el)
       if (!this.affixed && scrollTop > offset.top - this.offset) {
         this.affixed = true
@@ -128,7 +127,6 @@ export default {
   mounted: function () {
     // get the intial top number
     this.initialTop = this.getOffset(this.$el).top
-    console.log('biubiubiu')
     this.scrollEvent = EventListener.listen(window, 'scroll', this.scrolling)
   },
   beforeDestory: function () {
