@@ -17,7 +17,8 @@ after_success:
   - rm -rf config/
   - rm -rf build/
   - rm -rf node_modules/
-  - rm -rf src
+  - rm -rf src/
+  - rm -rf static/
   - rm *
   - mv dist/* .
   - rm -rf dist/
