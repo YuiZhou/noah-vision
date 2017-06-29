@@ -13,9 +13,15 @@ after_success:
   - git config --global user.email "travis@travis-ci.org"
   - git config --global user.name "Travis CI"
   - git checkout -b gh-pages
-  - shopt -s extglob
-  - rm -- !(dist/)
+  - rm index.html
+  - rm -rf static/
+  - rm -rf config/
+  - rm -rf build/
+  - rm -rf node_modules/
+  - rm -rf src
+  - rm *
   - mv dist/* .
+  - rm -rf dist/
   - git add --all
   - git commit -m"auto deploy"
   - git remote add origin-pages https://${GH_TOKEN}@github.com/YuiZhou/noah-vision.git > /dev/null 2>&1
