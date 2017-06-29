@@ -92,5 +92,5 @@ var images = [{
 
 module.exports = {
   images: images,
-  workspace: '../../static/portfolio/'
+  workspace: '../../images/portfolio/'
 }
