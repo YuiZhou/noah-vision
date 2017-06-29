@@ -1,8 +1,11 @@
 language: nodejs
+node_js:
+  - 6
 branches:
   only:
     - master
 install:
+  - npm install -g npm
   - npm install
 script:
   - npm run build
