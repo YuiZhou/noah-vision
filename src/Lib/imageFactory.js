@@ -1,9 +1,13 @@
-function getImages() {
+function getImages(index) {
   return [];
 }
 
-function getTags() {
-  return ['all'];
-}
+var tags = [];
 
-export default { getTags, getImages };
+var DEFAULT_INDEX = 0;
+
+export default {
+  DEFAULT_INDEX,
+  getImages,
+  tags,
+};

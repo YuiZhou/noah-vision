@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import { getTags, getImages } from './Lib/imageFactory.js';
+import ImageFactory from './Lib/imageFactory.js'
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      tags : getTags(),
-      active: 0,
-      images: getImages()
+      tags : ImageFactory.tags,
+      active: ImageFactory.DEFAULT_INDEX,
+      images: ImageFactory.getImages()
     }
+
+    this.onSwitchTag = this.onSwitchTag.bind(this);
   }
+
+  onSwitchTag(index) {}
 
   render() {
     const {tags, active, images} = this.state;
     return (
       <div className="App">
         <Welcome />
-        <Banner tags="tags" active="active" onSwitchTag="onSwitchTag.bind(this, id)"/>
-        <Display />
+        <Banner tags="tags" active="active" onSwitchTag={ onSwitchTag.bind(this, id) }/>
+        <Display images={ images }/>
+        <Foot />
       </div>
     );
   }
