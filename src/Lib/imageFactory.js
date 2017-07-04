@@ -2,7 +2,7 @@ function getImages(index) {
   return [];
 }
 
-var tags = [];
+var tags = ['all'];
 
 var DEFAULT_INDEX = 0;
 
