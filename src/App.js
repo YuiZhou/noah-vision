@@ -4,6 +4,7 @@ import {AutoAffix} from 'react-overlays';
 import Welcome from './Component/Welcome/Welcome.js';
 import Banner from './Component/Banner/Banner.js';
 import Foot from './Component/Foot/Foot.js';
+import Display from './Component/Display/Display.js';
 
 import './App.css';
 
@@ -40,8 +41,7 @@ class App extends Component {
           </div>
         </AutoAffix>
         <div className="center">
-          {/*<Display images={images} />
-          */}
+          <Display images={images}/>
         </div>
         <Foot />
       </div>
