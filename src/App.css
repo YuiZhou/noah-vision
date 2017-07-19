@@ -18,6 +18,17 @@
   font-size: large;
 }
 
+body, html, .App, #root {
+  font-family:sans-serif; 
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	color: #fff ;
+	width: 100% !important;
+	height: 100% !important;
+	font-size:62.5%;
+	margin: 0;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
