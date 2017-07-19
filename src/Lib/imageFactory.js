@@ -2,9 +2,15 @@ function getImages(index) {
   return [];
 }
 
-var tags = ['all'];
+var tags = [{
+  key: 'all',
+  name: '全部'
+}, {
+  key: 'protrait',
+  name: '人像'
+}];
 
-var DEFAULT_INDEX = 0;
+var DEFAULT_INDEX = 'all';
 
 export default {
   DEFAULT_INDEX,

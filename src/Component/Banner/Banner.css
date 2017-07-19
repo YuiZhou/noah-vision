@@ -1,0 +1,31 @@
+.nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.nav>li {
+  text-align: center;
+  margin: 10px 15px;
+}
+.nav>li>a {
+    color: #b5b5b5;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 4px 2px;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    color: #929292;
+    background-color: transparent;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #d94f5c;
+    background-color: transparent;
+} 
+
+.nav-pills>li.active {
+     border-bottom: 2px solid;
+    border-bottom-color: #d94f5c;
+}
