@@ -10,13 +10,14 @@ class Display extends Component {
       itemMargin: 10,
       containerWidth: clientWidth,
       itemClassName: 'item',
-      gridWidth: 100,
+      gridWidth: 10,
       transitionDuration: '.5'
     };
   }
 
     render() {
         const { images } = this.props;
+        console.log(JSON.stringify(images));
         return (
             <AutoResponsive ref="container" {...this.getAutoResponsiveProps()}>
                 {
@@ -25,7 +26,7 @@ class Display extends Component {
                             width: 200,
                             height: 200 * x.h / x.w
                         }
-                        return <div className="item" style={itemStyle} key={i}><p>{i}</p></div>;
+                        return <div className="item" style={itemStyle} key={i}><img src={process.env.PUBLIC_URL + "/portfolio/" + x.thumb}/></div>;
                     }, this)
                 }
             </AutoResponsive>
