@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - 6
+branches:
+  only:
+    - master
+install:
+  - npm install -g npm
+  - npm install
+script:
+  - npm run build
+after_success:
+  - git config --global user.email "travis@travis-ci.org"
+  - git config --global user.name "Travis CI"
+  - git checkout -b gh-pages
+  - rm index.html
+  - rm -rf src/
+  - rm -rf public/
+  - rm -rf .vscode/
+  - rm *
+  - mv build/* .
+  - rm -rf build/
+  - git add --all
+  - git commit -m"auto deploy"
+  - git remote add origin-pages https://${github_token}@github.com/YuiZhou/noah-vision.git > /dev/null 2>&1
+  - git push -f --quiet --set-upstream origin-pages gh-pages
