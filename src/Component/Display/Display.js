@@ -11,7 +11,7 @@ class Display extends Component {
     }
 
     getAutoResponsiveProps() {
-        const {bodyWidth} = this.state;
+        const { bodyWidth } = this.state;
         var clientWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth - 20;
         return {
             itemMargin: 15,
@@ -24,12 +24,12 @@ class Display extends Component {
     }
 
     componentDidMount() {
-    window.addEventListener('resize', () => {
-      this.setState({
-        bodyWidth: document.body.clientWidth
-      });
-    }, false);
-  }
+        window.addEventListener('resize', () => {
+            this.setState({
+                bodyWidth: document.body.clientWidth
+            });
+        }, false);
+    }
 
 
     render() {
