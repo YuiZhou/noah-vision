@@ -1,0 +1,18 @@
+[
+    {
+        "key": "all",
+        "name": "全部"
+    },
+    {
+        "key": "portrait",
+        "name":"人像"
+    },
+    {
+        "key": "stage",
+        "name": "剧照"
+    },
+    {
+        "key": "documentary",
+        "name": "记录"
+    }
+]

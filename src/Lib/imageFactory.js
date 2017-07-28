@@ -14,13 +14,7 @@ function getImages(index) {
   return select;
 }
 
-var tags = [{
-  key: 'all',
-  name: '全部'
-}, {
-  key: 'protrait',
-  name: '人像'
-}];
+var tags = require('./tags.json');
 
 var DEFAULT_INDEX = 'all';
 
