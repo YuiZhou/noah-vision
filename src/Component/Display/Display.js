@@ -18,7 +18,7 @@ class Display extends Component {
             containerWidth: clientWidth,
             itemClassName: 'item',
             gridWidth: 10,
-            transitionDuration: '.5',
+            transitionDuration: '.8',
             transitionTimingFunction: 'easeIn'
         };
     }
