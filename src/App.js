@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   onSwitchTag(index) {
+    index = index || ImageFactory.DEFAULT_INDEX;
     var images = ImageFactory.getImages(index);
     this.setState(function () {
       return { active: index, images: images }

@@ -4,9 +4,13 @@
   vertical-align: top;
 }
 
+.tagIcon {
+    width: 48px;
+}
+
 .nav>li {
   text-align: center;
-  margin: 10px 15px;
+  margin: 10px 25px;
 }
 .nav>li>a {
     color: #b5b5b5;

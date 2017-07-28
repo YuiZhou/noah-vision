@@ -3,30 +3,47 @@ import AutoResponsive from 'autoresponsive-react';
 import './Display.css';
 
 class Display extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bodyWidth: document.body.clientWidth
+        }
+    }
+
     getAutoResponsiveProps() {
-        var bodyWidth = document.body.clientWidth;
+        const {bodyWidth} = this.state;
         var clientWidth = bodyWidth > 768 ? bodyWidth * 0.9 : bodyWidth - 20;
-    return {
-      itemMargin: 10,
-      containerWidth: clientWidth,
-      itemClassName: 'item',
-      gridWidth: 10,
-      transitionDuration: '.5'
-    };
+        return {
+            itemMargin: 15,
+            containerWidth: clientWidth,
+            itemClassName: 'item',
+            gridWidth: 10,
+            transitionDuration: '.5',
+            transitionTimingFunction: 'easeIn'
+        };
+    }
+
+    componentDidMount() {
+    window.addEventListener('resize', () => {
+      this.setState({
+        bodyWidth: document.body.clientWidth
+      });
+    }, false);
   }
+
 
     render() {
         const { images } = this.props;
-        console.log(JSON.stringify(images));
+        const fixWidth = 235;
         return (
-            <AutoResponsive ref="container" {...this.getAutoResponsiveProps()}>
+            <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }>
                 {
                     images.map(function (x, i) {
                         var itemStyle = {
-                            width: 200,
-                            height: 200 * x.h / x.w
+                            width: fixWidth,
+                            height: fixWidth * x.h / x.w
                         }
-                        return <div className="item" style={itemStyle} key={i}><img src={process.env.PUBLIC_URL + "/portfolio/" + x.thumb}/></div>;
+                        return <div className="item" style={itemStyle} key={i}><img src={process.env.PUBLIC_URL + '/portfolio/' + x.thumb} alt={x.discribe} /></div>;
                     }, this)
                 }
             </AutoResponsive>
